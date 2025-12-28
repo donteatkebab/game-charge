@@ -7,12 +7,14 @@ services:
     restart: unless-stopped
 
   strapi:
-    image: ghcr.io/donteatkebab/gamecharge-strapi:prod
+    image: gamecharge-strapi:prod
     env_file: [ ../../.env ]
     environment:
       NODE_ENV: production
     volumes:
       - ../../data/uploads:/app/public/uploads
+    ports:
+      - "127.0.0.1:1337:1337"
     depends_on:
       db:
         condition: service_started
