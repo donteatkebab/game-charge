@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "order_methods",
+  "info": {
+    "singularName": "order-method",
+    "pluralName": "order-methods",
+    "displayName": "OrderMethod"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "sort_order": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "order_methods"
+    },
+    "order_method_fields": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order-method-field.order-method-field",
+      "mappedBy": "order_method"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order",
+      "mappedBy": "order_method"
+    }
+  }
+}

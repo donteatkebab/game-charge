@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "otps",
+  "info": {
+    "singularName": "otp",
+    "pluralName": "otps",
+    "displayName": "OTP"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "codeHash": {
+      "type": "string",
+      "private": true
+    },
+    "expiresAt": {
+      "type": "datetime"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "used": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

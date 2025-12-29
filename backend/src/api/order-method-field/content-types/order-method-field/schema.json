@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "order_method_fields",
+  "info": {
+    "singularName": "order-method-field",
+    "pluralName": "order-method-fields",
+    "displayName": "OrderMethodField"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "text",
+        "email",
+        "password",
+        "number"
+      ]
+    },
+    "sort_order": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "order_method": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order-method.order-method",
+      "inversedBy": "order_method_fields"
+    }
+  }
+}
