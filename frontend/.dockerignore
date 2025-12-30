@@ -1,10 +1,10 @@
 node_modules
 .pnpm-store
+.next
+out
+.turbo
 .git
 .cache
 .DS_Store
-dist
-build
-.strapi
 coverage
 *.log

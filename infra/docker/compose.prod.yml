@@ -1,16 +1,16 @@
 services:
   db:
     image: postgres:16-alpine
-    env_file: [ ../../.env ]
+    env_file:
+      - ../../backend/.env
     volumes:
       - ../../data/postgres:/var/lib/postgresql/data
     restart: unless-stopped
 
-  strapi:
+  backend:
     image: gamecharge-strapi:prod
-    env_file: [ ../../.env ]
-    environment:
-      NODE_ENV: production
+    env_file:
+      - ../../backend/.env
     volumes:
       - ../../data/uploads:/app/public/uploads
     ports:
@@ -18,4 +18,12 @@ services:
     depends_on:
       db:
         condition: service_started
+    restart: unless-stopped
+
+  frontend:
+    image: gamecharge-next:prod
+    env_file:
+      - ../../frontend/.env
+    ports:
+      - "127.0.0.1:3000:3000"
     restart: unless-stopped

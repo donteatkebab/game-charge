@@ -1,0 +1,12 @@
+services:
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    env_file:
+      - ../../frontend/.env.local
+    volumes:
+      - ../../frontend:/app
+    ports:
+      - "3000:3000"
+    command: sh -lc "corepack enable && pnpm install && pnpm dev"
+    restart: unless-stopped
