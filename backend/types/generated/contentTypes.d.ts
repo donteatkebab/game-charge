@@ -483,7 +483,6 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    faqs: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'>;
     icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -552,39 +551,6 @@ export interface ApiCommentComment extends Struct.CollectionTypeSchema {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-  };
-}
-
-export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
-  collectionName: 'faqs';
-  info: {
-    displayName: 'FAQ';
-    pluralName: 'faqs';
-    singularName: 'faq';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    answer: Schema.Attribute.Text & Schema.Attribute.Required;
-    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    is_common: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    question: Schema.Attribute.Text & Schema.Attribute.Required;
-    sort_order: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<0>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -771,7 +737,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     regular_price: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<0>;
-    short_description: Schema.Attribute.String & Schema.Attribute.Required;
     sort_order: Schema.Attribute.Integer & Schema.Attribute.Required;
     sub_category: Schema.Attribute.Relation<
       'manyToOne',
@@ -1286,6 +1251,8 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    first_name: Schema.Attribute.String;
+    last_name: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1301,6 +1268,15 @@ export interface PluginUsersPermissionsUser
     phone: Schema.Attribute.String & Schema.Attribute.Unique;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    referral_source: Schema.Attribute.Enumeration<
+      [
+        '\u06AF\u0648\u06AF\u0644',
+        '\u0634\u0628\u06A9\u0647 \u0647\u0627\u06CC \u0627\u062C\u062A\u0645\u0627\u0639\u06CC',
+        '\u062F\u0648\u0633\u062A\u0627\u0646',
+        '\u062A\u0631\u062C\u06CC\u062D \u0645\u06CC\u062F\u0647\u0645 \u06A9\u0647 \u0646\u06AF\u0648\u06CC\u0645',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'\u062A\u0631\u062C\u06CC\u062D \u0645\u06CC\u062F\u0647\u0645 \u06A9\u0647 \u0646\u06AF\u0648\u06CC\u0645'>;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',
@@ -1332,7 +1308,6 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
       'api::comment.comment': ApiCommentComment;
-      'api::faq.faq': ApiFaqFaq;
       'api::order-method-field.order-method-field': ApiOrderMethodFieldOrderMethodField;
       'api::order-method.order-method': ApiOrderMethodOrderMethod;
       'api::order.order': ApiOrderOrder;

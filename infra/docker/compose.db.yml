@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: gamecharge-db
+    environment:
+      POSTGRES_DB: game_charge_db
+      POSTGRES_USER: game_charge_user
+      POSTGRES_PASSWORD: 70c9a9bd21afb3c287f91d52d1e1d2aa27eaacf9606823916b046ed6cb6166cf
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

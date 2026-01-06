@@ -70,12 +70,6 @@
       "target": "api::product.product",
       "mappedBy": "category"
     },
-    "faqs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::faq.faq",
-      "mappedBy": "category"
-    },
     "comments": {
       "type": "relation",
       "relation": "oneToMany",

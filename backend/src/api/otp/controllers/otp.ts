@@ -255,6 +255,8 @@ export default factories.createCoreController("api::otp.otp", ({ strapi }) => {
             email: `${phone}@sms.local`,
             confirmed: true,
             role: defaultRole?.id,
+            first_name: "کاربر",
+            last_name: phone.slice(-4),
           },
         })
       } else if (!user.role && defaultRole?.id) {

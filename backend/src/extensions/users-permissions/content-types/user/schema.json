@@ -81,6 +81,22 @@
       "relation": "oneToMany",
       "target": "api::order.order",
       "mappedBy": "users_permissions_user"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "referral_source": {
+      "type": "enumeration",
+      "default": "ترجیح میدهم که نگویم",
+      "enum": [
+        "گوگل",
+        "شبکه های اجتماعی",
+        "دوستان",
+        "ترجیح میدهم که نگویم"
+      ]
     }
   }
 }

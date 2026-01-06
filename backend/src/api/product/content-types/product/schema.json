@@ -15,10 +15,6 @@
       "type": "string",
       "required": true
     },
-    "short_description": {
-      "type": "string",
-      "required": true
-    },
     "image": {
       "type": "media",
       "multiple": false,
